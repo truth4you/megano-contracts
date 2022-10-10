@@ -1,0 +1,61 @@
+{
+  "name": "hardhat-hackathon-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate repository to get you started with Hardhat and Ethereum development",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean",
+    "deploy_bsctest": "npx hardhat run --network bsctestnet scripts/deploy.js",
+    "build": "concurrently \"yarn workspace @dogeswap/contracts-core build && yarn workspace @dogeswap/contracts-periphery build\" \"yarn workspace @dogeswap/sdk-core build && yarn workspace @dogeswap/v2-sdk build\" && yarn workspace @dogeswap/interface build",
+    "dev": "concurrently \"yarn localnet:run\" \"yarn localnet:deploy\" \"yarn interface:run\"",
+    "interface:run": "yarn workspace @dogeswap/interface dev",
+    "localnet:run": "yarn hardhat node",
+    "localnet:deploy": "concurrently \"yarn workspace @dogeswap/contracts-core build\" \"yarn workspace @dogeswap/contracts-periphery build\" && yarn hardhat run --network localhost scripts/run-localnet.ts",
+    "mainnet:deploy": "yarn build && yarn hardhat deploy --network mainnet",
+    "testnet:deploy": "yarn build && yarn hardhat deploy --network testnet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nomiclabs/hardhat-hackathon-boilerplate.git"
+  },
+  "keywords": [
+    "hardhat",
+    "ethereum",
+    "hackathon"
+  ],
+  "author": "Nomic Labs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nomiclabs/hardhat-hackathon-boilerplate/issues"
+  },
+  "homepage": "https://github.com/nomiclabs/hardhat-hackathon-boilerplate#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^3.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/hardhat-upgrades": "^1.14.0",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^3.1.1",
+    "ethers": "^5.0.0",
+    "hardhat": "^2.3.0",
+    "husky": "^4.2.5"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.4.1",
+    "@nomiclabs/buidler": "^1.4.8",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts-upgradeable": "^4.5.1",
+    "@uniswap/lib": "^4.0.1-alpha",
+    "circomlib": "git+https://github.com/tornadocash/circomlib.git#3b492f9801573eebcfe1b6c584afe8a3beecf2b4",
+    "fixed-merkle-tree": "^0.6.1",
+    "hardhat-contract-sizer": "^2.5.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "openzeppelin-contracts": "^4.0.0",
+    "snarkjs": "git+https://github.com/tornadocash/snarkjs.git#869181cfaf7526fe8972073d31655493a04326d5",
+    "websnark": "git+https://github.com/tornadocash/websnark.git#4c0af6a8b65aabea3c09f377f63c44e7a58afa6d"
+  }
+}

@@ -1,0 +1,8 @@
+/.env
+/libraries.js
+/library.js
+/LICENSE
+/node_modules
+/package-lock.json
+/README.md
+/yarn.lock
